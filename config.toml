@@ -1,3 +1,41 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://akira.sh/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'akira.sh'
+theme = "nightfall"
+
+[params]
+user = "s0ders"
+hostname = "akira.sh"
+footerHtml = 'Built with <i class="fa-solid fa-heart"></i> using <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+
+  [params.author]
+    name = "Maxime T."
+    email = "s0ders[at]pm.me"
+  [[params.social]]
+  key = 0
+  name = "github"
+  url = "https://github.com/s0ders"
+  icon = "fa-brands fa-github"  
+
+  [[params.social]]
+  key = 1
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/maxime-tueux"
+  icon = "fa-brands fa-linkedin"  
+
+  [[params.social]]
+  key = 2
+  name = "email"
+  url = "mailto:s0ders@pm.me"
+  icon = "fa-solid fa-envelope"  
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
+  
+  [[menu.header]]
+    name = "about"
+    weight = 0
+    url = "/about"
