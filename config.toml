@@ -11,6 +11,7 @@ footerHtml = 'Built with <i class="fa-solid fa-heart"></i> using <a href="https:
   [params.author]
     name = "Maxime T."
     email = "s0ders[at]pm.me"
+
   [[params.social]]
   key = 0
   name = "github"
@@ -20,13 +21,13 @@ footerHtml = 'Built with <i class="fa-solid fa-heart"></i> using <a href="https:
   [[params.social]]
   key = 1
   name = "linkedin"
-  url = "https://www.linkedin.com/in/maxime-tueux"
+  url = "https://www.linkedin.com/in/maxime-tx"
   icon = "fa-brands fa-linkedin"  
 
   [[params.social]]
   key = 2
   name = "email"
-  url = "mailto:s0ders@pm.me"
+  url = "mailto:s0ders[at]pm.me"
   icon = "fa-solid fa-envelope"  
 
 [menu]

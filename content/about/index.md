@@ -1,3 +1,9 @@
+---
+title: "About me"
+date: 2024-01-31T23:56:19+01:00
+draft: false
+---
+
 ## Who am I
 
 Software engineering and automation (repetition ?) enthusiast.<br><br> 
