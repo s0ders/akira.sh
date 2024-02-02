@@ -6,6 +6,7 @@ theme = "nightfall"
 [params]
 user = "s0ders"
 hostname = "akira.sh"
+SiteDescription = "Yet another software engineering blog"
 footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i> using <a href="https://gohugo.io" class="footerLink">Hugo</a>'
 
   [params.author]
@@ -32,7 +33,6 @@ footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i>
 
   [[params.meta]]
   favicon = true
-  author = "Maxime T."
   description = "Personnal blog of a Go software engineer"
 
 [menu]
