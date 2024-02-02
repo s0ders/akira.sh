@@ -43,7 +43,7 @@ footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i>
   
   [[menu.header]]
     name = "books"
-    weight = 0
+    weight = 1
     url = "/books"
 
   [[menu.header]]
