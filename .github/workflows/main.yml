@@ -21,13 +21,12 @@ jobs:
 
       - name: Setup SSH key
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           mkdir -p /home/runner/.ssh
           ssh-keyscan 68.183.38.29 >> /home/runner/.ssh/known_hosts
 
-          echo "$SSH_KEY" > /home/runner/.ssh/github_action
+          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
 
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
