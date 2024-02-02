@@ -42,7 +42,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: hugo --gc 
+        run: hugo --gc --minify
 
       - name: Deploy using rsync
         env:
