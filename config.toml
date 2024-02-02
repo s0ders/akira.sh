@@ -42,11 +42,6 @@ footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i>
     url = "/posts"
   
   [[menu.header]]
-    name = "books"
-    weight = 1
-    url = "/books"
-
-  [[menu.header]]
     name = "about"
     weight = 0
     url = "/about"
