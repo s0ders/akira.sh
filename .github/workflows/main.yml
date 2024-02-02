@@ -22,9 +22,16 @@ jobs:
       - name: Setup SSH key
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          echo $SSH_KEY > ${{ runner.temp }}/github_actions_ssh
-          ssh-add ${{ runner.temp }}/github_actions_ssh
+          mkdir -p /home/runner/.ssh
+          ssh-keyscan 68.183.38.29 >> /home/runner/.ssh/known_hosts
+
+          echo "$SSH_KEY" > /home/runner/.ssh/github_action
+          chmod 600 /home/runner/.ssh/github_actions
+
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add /home/runner/.ssh/github_actions
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,5 +46,7 @@ jobs:
         run: hugo --gc --minify
 
       - name: Deploy using rsync
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           rsync -avz ./public/* github_actions@68.183.38.29:/home/github_actions/rsync_test/
