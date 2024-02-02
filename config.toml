@@ -6,7 +6,7 @@ theme = "nightfall"
 [params]
 user = "s0ders"
 hostname = "akira.sh"
-footerHtml = 'Built with <i class="fa-solid fa-heart"></i> using <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i> using <a href="https://gohugo.io" class="footerLink">Hugo</a>'
 
   [params.author]
     name = "Maxime T."
@@ -28,12 +28,17 @@ footerHtml = 'Built with <i class="fa-solid fa-heart"></i> using <a href="https:
   key = 2
   name = "email"
   url = "mailto:s0ders[at]pm.me"
-  icon = "fa-solid fa-envelope"  
+  icon = "fa-solid fa-envelope"
+
+  [[params.meta]]
+  favicon = true
+  author = "Maxime T."
+  description = "Personnal blog of a Go software engineer"
 
 [menu]
   [[menu.header]]
     name = "posts"
-    weight = 0
+    weight = 1
     url = "/posts"
   
   [[menu.header]]
