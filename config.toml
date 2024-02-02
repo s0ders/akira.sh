@@ -45,3 +45,9 @@ footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i>
     name = "about"
     weight = 0
     url = "/about"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
