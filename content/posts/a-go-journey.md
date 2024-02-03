@@ -10,7 +10,7 @@ tags: ['Go']
 
 I began programming using Go three years ago with a background of backend web developer. Nowadays I am a software engineer spending most of its time writing Go code for a living — and for fun. This post aims to list the resources that helped me understand Go and write clean, efficient and secure programs.
 
-Back when I discovered Go, several features of the language had picked my interest: statically linked binaries, easy-to-use primitive for concurrency, composition over inheritance, implicit interfaces, and may be the most interesting: **Go is easy to learn, hard to master**. 
+Back when I discovered Go, several features of the language had piqued my interest: statically linked binaries, easy-to-use primitive for concurrency, composition over inheritance, implicit interfaces, and may be the most interesting: **Go is easy to learn, hard to master**. 
 
 This last property highlights that Go was designed so that developers can quickly be productive using it. But of course, writing clean and efficient code means you need to understand the language primitives, idioms and sometimes, how things work under the hood.
 
