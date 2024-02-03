@@ -29,7 +29,7 @@ Before learning about style guidelines and optimizations techniques, one must kn
 
 ## Guidelines 
 
-Even-though Go is a language with several idioms, there is still room for interpretation. Guidelines can help you write code in a way that will maximize it's readability and maintainability. The following links can enlighten you to achieve this.
+Even-though Go is a language with several idioms, there is still room for interpretation. Guidelines can help you write code in a way that will maximize its readability and maintainability. The following links can enlighten you to achieve this.
 
 - [Standard Go Project Layout](https://github.com/golang-standards/project-layout), though this layout is in no way official, you will find it in almost every sizable Go project, hence, it is highly recommended that you familiarize yourself with it.
 - [Google Style Decisions](https://google.github.io/styleguide/go/decisions), by the company that brought Go in the first place, I strongly advise to read and follow these, especially if you intend to contribute to open-source Go projects such as Kubernetes. These guidelines cover lots of ground, from naming and documentation to which receiver type to use.
