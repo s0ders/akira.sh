@@ -18,7 +18,7 @@ This last property highlights that Go was designed so that developers can quickl
 
 ## The basics
 
-Before learning about style guidelines and optimizations techniques, one must know about a language primitives. I believe the following resources will help you grasp Go primitives and what can be accomplished using them. Coding along the various examples provided by these resources using the [Go playground](https://go.dev/play/) or you own environment is a really valuable learning opportunity.
+Before learning about style guidelines and optimizations techniques, one must know about a language primitives. I believe the following resources will help you grasp these and what can be accomplished using them. Coding along the various examples provided by these resources using the [Go playground](https://go.dev/play/) or your own environment is a really valuable learning opportunity.
 
 - [Go by Example](https://gobyexample.com/), a website which offers a tour of from basics (e.g. slices, maps, structures) to more advanced features (e.g. concurrency, templating, testing).
 - [Effective Go](https://go.dev/doc/effective_go), written by the Go team, this guide lays down advices to write clear and idiomatic code and highlight severals gotchas. This one is, in my opinion a must read if you are serious about learning Go.
