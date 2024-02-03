@@ -39,7 +39,7 @@ Even-though Go is a language with several idioms, there is still room for interp
 
 ## Advanced understanding
 
-You now know about the language's primitives, idioms, features and most common mistakes. Writing reliable code means that you must go the extra-miles and, sometimes, understand the language nuts and bolts. The books and talks bellow were conceived for that very purpose.
+You now know about the language's primitives, idioms, features and most common mistakes. Writing reliable code means that you must go the extra-miles and, sometimes, understand the language nuts and bolts. The books and talks below were conceived for that very purpose.
 
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them), my favorite resource in this post. Teiva Harsanyi's book is a must read for any serious Go developer. From common data types mistakes to advanced compiler and memory optimizations, this book has it all. Knowing these 100 mistakes will without a doubt make you a better Go developer.
 - [research!rsc](https://research.swtch.com/), Russ Cox[^2] blog on programming, it contains several articles that give an insight on how Go is designed, be it the memory model or how are interfaces and structures modeled in memory.
