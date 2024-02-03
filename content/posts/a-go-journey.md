@@ -51,7 +51,7 @@ You now know about the language's primitives, idioms, features and most common m
 
 Go is a rapidly evolving language with new features added to every new version. At the time I'm writing these lines, version 1.22 is in pre-release and, among other things, is fixing one of the most common mistakes[^1]. Being a software engineer also means knowing about what direction the language is taking and what new features are discussed. Bellow are two links to stay updated with how the Go ecosystem is evolving.
 
-- [The Go Blog](https://go.dev/blog/), the official Go blog. This is where news about the language are published but there is more. You can also find articles detailing a specific feature of the language such as type parameters or structured logging.
+- [The Go Blog](https://go.dev/blog/), the official Go blog. This is where news about the language are published. You can also find articles detailing a specific feature of the language such as type parameters or structured logging.
 - [Golang Weekly](https://golangweekly.com/), a weekly newsletter to stay updated about the ecosystem as well as the library and tools built in Go. I highly recommend subscribing to it.
 
 <br>
