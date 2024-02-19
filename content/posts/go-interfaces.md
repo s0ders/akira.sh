@@ -180,7 +180,7 @@ func main() {
 
 The solution to this issue is to directly return `nil` and not an interface wrapping a `nil` pointer.
 
-## Using a value for pointer-receiver methods
+## Using values with pointer-receiver methods
 
 To understand this mistake, we must first understand two things: what methods a type has access to and *addressability*.
 
