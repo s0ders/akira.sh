@@ -1,16 +1,17 @@
 ---
-title: "FIII"
+title: "Interfaces in Go"
 date: 2024-02-19T00:59:58+01:00
 draft: false
+tags: ['Go']
 ---
 # Introduction 
 
 <!--start-summary-->
-Go treats interfaces very differently from other languages that implement them. Knowledge about them is scattered across various blog posts and books, this article aims to single resource[^1] to understand interfaces in Go: when to use them, how are they modeled and what are the most common mistakes when using them.
+Go treats interfaces very differently from other languages that implement them. Knowledge about them is scattered across various blog posts and books, this article aims to be a single resource[^1] to understand interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
 
 # Basics
 
-To quote [Effective Go](https://go.dev/doc/effective_go#interfaces_and_types) "interfaces in Go provide a way to specify the behavior of an object: if can do *this*, then it can be used *here*", which means that interfaces are satisfied implicitly and structures need not any `implement` keyword. 
+To quote [Effective Go](https://go.dev/doc/effective_go#interfaces_and_types) "interfaces in Go provide a way to specify the behavior of an object: if it can do *this*, then it can be used *here*", which means that interfaces are satisfied implicitly and structures need not any `implement` keyword. 
 
 To deepen our understanding, let's talk about two of the most ubiquitous interfaces in Go, `io.Reader` and `io.Writer`.
 
@@ -30,7 +31,7 @@ First, a common idiom in Go is that interfaces are very often named using an *-e
 
 Going back to `io.Reader` and `io.Writer`, these two are used in many places, whether you want to read/write to a file or an HTTP request/response, they are pretty much everywhere. Hence, it is a good idea to follow the [Liskov's substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle). For instance, instead of accepting in a file path as a function to read from said file, accept an `io.Reader`.
 
-The function is now more generic and might get reused in the future, and it is now easier to create mocks for testing.
+The function is now more generic so it may be reused in the future, and it is now easier to create mocks for testing.
 
 ```go
 // Uppercase reads from a stream and returns all data in uppercase.
@@ -61,7 +62,7 @@ func TestUppercase(t *testing.T) {
 }
 ```
 
-It's possible to combine multiple interfaces together when it makes sens. The most common examples are `io.ReadWritter`, `io.ReadCloser`, `io.WriteCloser` and their variations.
+It's possible to combine multiple interfaces together when it makes sens. Common examples are `io.ReadWritter` or `io.ReadCloser`.
 
 ```go
 // To combine interfaces, simply create a new one embedding the existing ones.
@@ -126,7 +127,7 @@ fmt.Println(foo)
 
 Behind the scenes, the `Stringer` interface containing the `CustomInteger` is stored as depicted below (arrows symbolize pointers).
 
-![Interface memory layout](content/posts/images/itable.png)
+![Interface memory layout](itable.png)
 
 Whenever you try to assert the concrete type of an interface using the "comma ok" idiom or a type switch, the runtime checks if the type you are asserting matches the one stored in the itable.
 
@@ -150,5 +151,4 @@ When manipulating packages and modules, we distinguish between the producer side
 
 
 
-[^1]: [Relevent XCKD](https://foo.com).
-[^2]: This example is obviously prone to confusion, here we differentiate `io.Reader` the interface to read data from a stream and `strings.Reader` the structure wrapping a string and implementing `io.Reader`.
+[^1]: [Relevent XCKD](https://xkcd.com/927/)
