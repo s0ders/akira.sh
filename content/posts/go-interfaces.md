@@ -128,11 +128,9 @@ fmt.Println(foo)
 
 Behind the scenes, the `Stringer` interface in `foo` is stored as depicted below where arrows symbolize pointers.
 
-```html
 <object data="itable.svg" type="image/svg+xml">
   <img src="itable.png" />
 </object>
-```
 
 Now that we understand how interfaces are modeled, we know why:
 
