@@ -7,7 +7,7 @@ tags: ['Go']
 # Introduction 
 
 <!--start-summary-->
-Go treats interfaces very differently from other languages that implement them. Knowledge about them is scattered across various blog posts and books, this post tries to group in a single place[^1] what developers need to know to be comfortable using interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
+Go treats interfaces differently from other languages that implement them. Knowledge about them is scattered across various posts and books, this post tries to group in a single place[^1] what developers need to know to be comfortable using interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
 
 <br>
 
