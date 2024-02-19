@@ -13,7 +13,7 @@ Go treats interfaces very differently from other languages that implement them. 
 
 To quote [Effective Go](https://go.dev/doc/effective_go#interfaces_and_types) "interfaces in Go provide a way to specify the behavior of an object: if it can do *this*, then it can be used *here*", meaning that interfaces are satisfied implicitly so structures need not any `implement` keyword to signal that they implement an interface.
 
-Let's better dive into this topic using as examples two ubiquitous interfaces in Go, `io.Reader` and `io.Writer`.
+Let's better dive into this topic using two ubiquitous interfaces in Go as examples, `io.Reader` and `io.Writer`.
 
 ```go
 // Writer takes a slice of bytes p and write it to the underlying data stream.
@@ -31,7 +31,7 @@ You may notice a common idiom in Go with interfaces, they are very often named u
 
 Going back to `io.Reader` and `io.Writer`, whether a program wants to read/write to a file or an HTTP request/response, it will end up using one of these. Hence, it is a good idea to follow the [Liskov's substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle). For instance, instead of accepting a file path as a function parameter to read from said file, the function should accept an `io.Reader` directly.
 
-This small change makes the function more generic so that it may be reused in the future and it also allows for easier testing by simplifying the creation of mocks as demonstrated bellow.
+This small change makes the function more generic so that it may be reused in the future and also allows for easier testing by simplifying the creation of mocks as demonstrated bellow.
 
 ```go
 // Uppercase reads from a stream and returns all data in uppercase.
@@ -48,10 +48,10 @@ func Uppercase(r io.Reader) ([]byte, err) {
 // Here we use "strings.NewReader" to easily mock any actual implementation
 // of io.Reader. To mock an io.Writer, you can use a bytes.Buffer.
 func TestUppercase(t *testing.T) {
-    foo := strings.NewReader("foo")
+    r := strings.NewReader("foo")
     want := []byte("FOO")
     
-    got, err := Uppercase([]byte(foo))
+    got, err := Uppercase(r)
     if err != nil {
         t.Fatal(err)
     }
