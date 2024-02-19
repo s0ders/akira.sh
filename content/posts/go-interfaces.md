@@ -1,7 +1,7 @@
 ---
 title: "Interfaces in Go"
 date: 2024-02-19T00:59:58+01:00
-draft: true
+draft: false
 tags: ['Go']
 ---
 # Introduction 
