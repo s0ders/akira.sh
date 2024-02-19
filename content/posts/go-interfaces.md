@@ -1,13 +1,15 @@
 ---
 title: "Interfaces in Go"
-date: 2024-02-19T00:59:58+01:00
-draft: true
+date: 2024-02-20T00:59:58+01:00
+draft: false
 tags: ['Go']
 ---
 # Introduction 
 
 <!--start-summary-->
 Go treats interfaces very differently from other languages that implement them. Knowledge about them is scattered across various blog posts and books, this article aims to be a single resource[^1] to understand interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
+
+
 
 # Basics
 
@@ -36,13 +38,13 @@ This small change makes the function more generic so that it may be reused in th
 ```go
 // Uppercase reads from a stream and returns all data in uppercase.
 func Uppercase(r io.Reader) ([]byte, err) {
-    buf := new(bytes.Buffer)
-    _, err := r.Read(buf)
+    buffer := []byte{}
+    _, err := r.Read(buffer)
     if err != nil {
         return nil, err
     }
     
-    return bytes.ToUpper(buf), nil
+    return bytes.ToUpper(buffer), nil
 }
 
 // Here we use "strings.NewReader" to mock any concrete 
@@ -145,7 +147,7 @@ Now that we understand how interfaces are modeled, we can understand the followi
 
 ## When `nil` is not equal to `nil`
 
-We now know that an interface is equal to `nil` only when both its type and value are `nil`. This can lead to tricky errors when wrapping a `nil` pointers as shown below.
+The fact that an interface is only equal to `nil` only when both its type and value are `nil` can lead to tricky errors when wrapping a `nil` pointers. Indeed, the type contained by the interface will be a pointer and, even though the value of the interface is `nil`, the interface itself won't be which can lead to the mistakes below.
 
 ```go
 type customError struct {
@@ -157,6 +159,7 @@ func (c *customError) Error() string {
     return c.Message
 }
 
+// "error" interface wraps the nil pointer *customError
 func foo() error {
     var err *customError
     // err has its default value, nil
@@ -166,8 +169,8 @@ func foo() error {
 func main() {
     err := foo()
     // This will always be triggered because "error" is an interface
-    // wrapping a nil pointer which is a valid wrappee, hence "error"
-    // is not nil.
+    // wrapping pointer and even though the pointer is nil, the interface
+    // type is not so the interface is not nil.
     if err != nil {
         panic(err)
     }
@@ -175,11 +178,45 @@ func main() {
 
 ```
 
-
+The solution to this issue is to directly return `nil` and not an interface wrapping a `nil` pointer.
 
 ## Using a value for pointer-receiver methods
 
-Aka interface value not addressable
+To understand this mistake, we must first understand two things: what methods a type has access to and *addressability*.
+
+A type *T has access to both pointer-receiver methods and value methods, this is because for value methods, a pointer can always be dereferenced to access the value it points to. On the other hand, a type T only has access to value-receiver methods. The catch is that the language allows for values which are *addressable* to use pointer-receiver methods transparently, in which case the runtime simply get the address of that value. 
+
+But not all values are addressable, meaning the runtime cannot get the address of every values. Some notably *unaddressable* values are: interface values and map values. The reason behind this inability to get the values' addresses depend for every type. For maps, it is because the values might get rearranged during the program lifetime so their addresses might change. For interfaces, it is because passing the underlying value's address to a pointer-receiver method might lead to the value being changed which would cause inconsistency if the value no longer matches the type stored in the interface.
+
+```go
+type Incrementer interface {
+    Increment()
+}
+
+type A struct {
+    i int
+}
+
+func (a *A) Increment() {
+    a.i++
+}
+
+func Foo(i Incrementer) {
+    i.Increment()
+}
+
+func main() {
+    a := A{i: 0}
+    // This will fail with the following error:
+    // "A does not implement Incrementer (method Increment has a pointer receiver)"
+    Foo(a)
+    // A possible workaround is to pass a reference
+    Foo(&a)
+    // Another one is to directly store a reference to the structure
+    pA := &A{i: 0}
+    Foo(pA)
+}
+```
 
 
 
