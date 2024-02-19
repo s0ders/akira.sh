@@ -48,4 +48,4 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          rsync -avz ./public/* github_actions@68.183.38.29:/var/www/html/public/
+          rsync --delete -avz ./public/* github_actions@68.183.38.29:/var/www/html/public/
