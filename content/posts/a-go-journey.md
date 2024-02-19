@@ -27,6 +27,8 @@ Before learning about style guidelines and optimizations techniques, one must kn
 - [Go Landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f), a short list of three common mistakes that can trick beginners and hardened developers alike.[^1]
 - [Let's Go](https://lets-go.alexedwards.net/), Alex Edward's book is a very good reading to learn how to build clean, efficient and secure web application.
 
+<br>
+
 # Guidelines 
 
 Even-though Go is a language with several idioms, there is still room for interpretation. Guidelines can help you write code in a way that will maximize its readability and maintainability. The following links can enlighten you to achieve this.
@@ -35,6 +37,8 @@ Even-though Go is a language with several idioms, there is still room for interp
 - [Google Style Decisions](https://google.github.io/styleguide/go/decisions), by the company that brought Go in the first place, I strongly advise to read and follow these, especially if you intend to contribute to open-source Go projects such as Kubernetes. These guidelines cover lots of ground, from naming and documentation to which receiver type to use.
 - [Uber Style Guide](https://github.com/uber-go/guide/blob/master/style.md), this guide covers frequent mistakes, style guidance and gives a few tips to simply enhance performance of your programs.
 
+<br>
+
 # Advanced understanding
 
 You now understand the language's primitives, idioms, features and most common mistakes. Writing reliable code means that you must go the extra-miles and, sometimes, understand the language nuts and bolts. The books and talks below were conceived for that very purpose.
@@ -42,6 +46,8 @@ You now understand the language's primitives, idioms, features and most common m
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them), my favorite resource in this post. Teiva Harsanyi's book is a must read for any serious Go developer. From common data types mistakes to advanced compiler and memory optimizations, this book has it all. Knowing these 100 mistakes will, without a doubt, make you a better Go developer.
 - [research!rsc](https://research.swtch.com/), Russ Cox[^2] blog on programming, it contains several articles that give an insight on how Go is designed, be it the memory model or how are interfaces and structures modeled in memory.
 - [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), this half an hour talk offers lots of valuable informations on one of Go most special pre-declared identifer[^3].
+
+<br>
 
 # Staying up-to-date
 

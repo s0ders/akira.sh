@@ -9,7 +9,7 @@ tags: ['Go']
 <!--start-summary-->
 Go treats interfaces very differently from other languages that implement them. Knowledge about them is scattered across various blog posts and books, this article aims to be a single resource[^1] to understand interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
 
-
+<br>
 
 # Basics
 
@@ -100,7 +100,7 @@ default:
 
 Another interesting feature brought by interface in Go is that they allow to restrict the behavior on the underlying type. We will discuss how this is achieved in the next section.
 
-
+<br>
 
 # Under the hood
 
@@ -141,7 +141,7 @@ Now that we understand how interfaces are modeled, we can understand the followi
 - Interfaces restrict the underlying types behavior because they only have pointers to the methods used to satisfy the interface, the ones stored in the interface table. Type assertion is a way to lift these restrictions by getting a copy of the underlying value which is either not restricted at all, in the case of an assertion to a concrete type, or has different restrictions in the case of an assertion to another interface.
 - Interfaces are equal to `nil` only if both value and type are `nil`.
 
-
+<br>
 
 # Common mistakes
 
@@ -225,8 +225,6 @@ func main() {
 This one is more a design mistakes than a technical one and is very well explained in [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them). 
 
 When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Let's remember that "*abstraction should be discovered, not created*".
-
-<br>
 
 <br>
 
