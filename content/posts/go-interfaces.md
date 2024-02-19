@@ -1,7 +1,7 @@
 ---
 title: "Interfaces in Go"
 date: 2024-02-19T00:59:58+01:00
-draft: false
+draft: true
 tags: ['Go']
 ---
 # Introduction 
@@ -151,4 +151,4 @@ When manipulating packages and modules, we distinguish between the producer side
 
 
 
-[^1]: [Relevent XCKD](https://xkcd.com/927/)
+[^1]: [Relevant XCKD](https://xkcd.com/927/)
