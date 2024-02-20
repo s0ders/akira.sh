@@ -37,28 +37,29 @@ This small change makes the function more generic so that it may be reused in th
 
 ```go
 // Uppercase reads from a stream and returns all data in uppercase.
-func Uppercase(r io.Reader) ([]byte, err) {
-    buffer := []byte{}
-    _, err := r.Read(buffer)
+func Uppercase(r io.Reader) ([]byte, error) {
+    b, err := io.ReadAll(r)
     if err != nil {
         return nil, err
     }
     
-    return bytes.ToUpper(buffer), nil
+    return bytes.ToUpper(b), nil
 }
 
 // Here we use "strings.NewReader" to mock any concrete 
 // implementation of io.Reader.
 func TestUppercase(t *testing.T) {
     r := strings.NewReader("foo")
-    want := []byte("FOO")
+    want := "FOO"
     
     got, err := Uppercase(r)
     if err != nil {
         t.Fatal(err)
     }
     
-    if got != want {
+    // Convert []byte to string since equality is not directly
+    // defined for slice
+    if string(got) != want {
         t.Errorf("got %q, want %q", got, want)
     }
 }
