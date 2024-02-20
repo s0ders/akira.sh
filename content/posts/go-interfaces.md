@@ -98,7 +98,7 @@ default:
 }
 ```
 
-Another interesting feature brought by interface in Go is that they allow to restrict the behavior on the underlying type. We will discuss how this is achieved in the next section.
+Another interesting feature brought by interface in Go is that they allow to restrict the behavior of the underlying type. We will discuss how this is achieved in the next section.
 
 <br>
 
@@ -210,9 +210,9 @@ func main() {
     // This will fail with the following error:
     // "A does not implement Incrementer (method Increment has a pointer receiver)"
     Foo(a)
-    // A possible workaround is to pass a reference
+    // A possible workaround is to pass a pointer
     Foo(&a)
-    // Another one is to directly store a reference to the structure
+    // Another one is to directly store a pointer to the structure
     pA := &A{i: 0}
     Foo(pA)
 }
