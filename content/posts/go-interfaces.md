@@ -165,11 +165,29 @@ func foo() error {
     return err 
 }
 
+// Here we avoid the mistake of wrapping a nil pointer
+// by directly returning nil if there the pointer is nil
+func betterFoo() error {
+    var err *customError
+
+    if err != nil {
+        return err
+    }
+
+    return nil
+}
+
 func main() {
     err := foo()
     // This will always be triggered because "error" is an interface
     // wrapping pointer and even though the pointer is nil, the interface
     // type is not so the interface is not nil.
+    if err != nil {
+        panic(err)
+    }
+
+    err = betterFoo()
+    // betterFoo returned nil, so this will not be triggered.
     if err != nil {
         panic(err)
     }
@@ -238,4 +256,4 @@ This following sources helped in the writing of this post:
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces), R. Cox
 - [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), F. Campoy
 
-[^1]: [Relevant XCKD](https://xkcd.com/927/)
+[^1]: [Relevant XKCD](https://xkcd.com/927/)
