@@ -110,6 +110,7 @@ Russ Cox's [post](https://research.swtch.com/interfaces) goes into the details o
 Interfaces are modeled as a two-word data structure:
 
 - The first word points to an interface table, or "itable", which holds the underlying concrete type and pointers to the associated functions for that interface. 
+
 - The second word points to the actual value of that interface.
 
 To illustrate this, let's take the example of a simple interface, `Stringer`. It is defined in the `fmt` package, and is used to print values passed to the various print functions defined in the package.
@@ -138,6 +139,7 @@ Now that we understand how interfaces are modeled, we can understand the followi
 - Type assertion on an interface is done by checking the asserted type against the one stored in the interface table.
 
 - Interfaces restrict the underlying types behavior because they only have pointers to the methods used to satisfy the interface, the ones stored in the interface table. Type assertion is a way to lift these restrictions by getting a copy of the underlying value which is either not restricted at all, in the case of an assertion to a concrete type, or has different restrictions in the case of an assertion to another interface.
+
 - Interfaces are equal to `nil` only if both value and type are `nil`.
 
 <br>
@@ -254,6 +256,7 @@ This following sources helped in the writing of this post:
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them), T. Harsanyi
 
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces), R. Cox
+
 - [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), F. Campoy
 
 [^1]: [Relevant XKCD](https://xkcd.com/927/)
