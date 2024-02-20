@@ -7,7 +7,8 @@ showMetadata: false
 
 ## Who
 
-Software engineering and automation enthusiast.<br><br> 
+Software engineering and automation enthusiast.
+<br> 
 My main interests are, in no particular order: 
 - Go software development
 - System administration
@@ -15,6 +16,7 @@ My main interests are, in no particular order:
 
 ## Why
 
-I enjoy writing about topics I'm interested about and believe there's nothing like sharing knowledge to deepen your understanding about something.
-<br>Besides, most of my learning sources are various blogs so it's only normal that, I too, share the thing I feel might — or not — interest others.
+I enjoy writing about topics I'm interested about and there's nothing like sharing knowledge to deepen your understanding about something.
+<br>
+Besides, most of my learning sources are various blogs so I wanted to try the exercice of sharing by writing succint post and I appreciate it so far.
 
