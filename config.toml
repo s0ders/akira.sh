@@ -25,11 +25,6 @@ footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i>
   url = "https://www.linkedin.com/in/maxime-tx"
   icon = "fa-brands fa-linkedin"  
 
-  [[params.social]]
-  key = 2
-  name = "email"
-  url = "mailto:s0ders[at]pm.me"
-  icon = "fa-solid fa-envelope"
 
   [[params.meta]]
   favicon = true
