@@ -7,7 +7,7 @@ tags: ['Go']
 # Introduction 
 
 <!--start-summary-->
-Go treats interfaces differently from other languages that implement them. Knowledge about them is scattered across various posts and books, this post tries to group in a single place[^1] what developers need to know to be comfortable using interfaces in the context of Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
+Go treats interfaces differently from other languages that implement them. Knowledge about them is scattered across various posts and books, this post tries to group in a single place[^1] what developers need to know to be comfortable using interfaces in Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
 
 <br>
 
@@ -65,7 +65,7 @@ func TestUppercase(t *testing.T) {
 }
 ```
 
-It's possible to combine multiple interfaces together when it makes sens. Common examples are `io.ReadWritter` or `io.ReadCloser`.
+It is possible to combine multiple interfaces together when it makes sens. Common examples are `io.ReadWritter` or `io.ReadCloser`.
 
 ```go
 // To combine interfaces, simply create a new one embedding the existing ones.
@@ -75,7 +75,7 @@ type ReadCloser interface {
 }
 ```
 
-Sometimes a program might need to access an interface underlying value. Doing so is called a **type assertion**, the "comma ok" idiom and type switches are two methods to achieve that. Type assertion is not limited to concrete types and can also be used to check if an interface underlying value implements other interfaces.
+Sometimes a program might need to access an interface underlying value. Doing so is called a *type assertion*, the "comma ok" idiom and type switches are two methods to achieve that. Type assertion is not limited to concrete types and can also be used to check if an interface underlying value implements other interfaces.
 
 ```go
 // "any" is an alias for "interface{}" which matches 
@@ -131,9 +131,7 @@ var foo Stringer = CustomInt(1)
 
 Behind the scenes, the `Stringer` interface in `foo` is stored as depicted below, where arrows symbolize pointers.
 
-<object data="itable.svg" type="image/svg+xml">
-  <img src="itable.png" />
-</object>
+![Interface table illustration](itable.png)
 
 Now that we understand how interfaces are modeled, we can understand the followings:
 
