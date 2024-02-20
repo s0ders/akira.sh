@@ -195,7 +195,7 @@ func main() {
 
 ```
 
-The solution to this issue is to directly return `nil` and not an interface wrapping a `nil` pointer.
+The solution to this issue is to directly return `nil` and not an interface wrapping a `nil` pointer as done in the `betterFoo` function.
 
 ## Using values with pointer-receiver methods
 
@@ -241,7 +241,7 @@ func main() {
 
 This one is more a design mistakes than a technical one and is very well explained in [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them). 
 
-When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Let's remember that "*abstraction should be discovered, not created*".
+When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Let's remember that *"abstraction should be discovered, not created"*.
 
 <br>
 
