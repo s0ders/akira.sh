@@ -65,10 +65,9 @@ func TestUppercase(t *testing.T) {
 }
 ```
 
-It is possible to combine multiple interfaces together when it makes sens. Common examples are `io.ReadWritter` or `io.ReadCloser`.
+It is possible to combine multiple interfaces together when it makes sens by embedding them. Common examples are `io.ReadWritter` or `io.ReadCloser`.
 
 ```go
-// To combine interfaces, simply create a new one embedding the existing ones.
 type ReadCloser interface {
 	Reader
 	Closer
@@ -132,7 +131,7 @@ var foo Stringer = CustomInt(1)
 
 Behind the scenes, the `Stringer` interface in `foo` is stored as depicted below, where arrows symbolize pointers.
 
-![Interface table illustration](itable.png)
+![Interface memory model](itable.png)
 
 Now that we understand how interfaces are modeled, we can understand the followings:
 
@@ -148,7 +147,7 @@ Now that we understand how interfaces are modeled, we can understand the followi
 
 ## When `nil` is not equal to `nil`
 
-The fact that an interface is only equal to `nil` only when both its type and value are `nil` can lead to tricky errors when wrapping a `nil` pointers. Indeed, the type contained by the interface will be a pointer and, even though the value of the interface is `nil`, the interface itself won't be which can lead to the mistakes below.
+The fact that an interface is only equal to `nil` only when both its type and value are `nil` can lead to tricky errors when wrapping `nil` pointers. Indeed, the type contained by the interface will be a pointer and, even though the value of the interface is `nil`, the interface itself won't be and this can lead to the following problem.
 
 ```go
 type customError struct {
@@ -199,6 +198,8 @@ func main() {
 
 The solution to this issue is to directly return `nil` and not an interface wrapping a `nil` pointer as done in the `betterFoo` function.
 
+
+
 ## Using values with pointer-receiver methods
 
 To understand this mistake, we must first understand two things: what methods a type has access to and *addressability*.
@@ -239,11 +240,59 @@ func main() {
 
 
 
+## Not checking interface compliance
+
+Most interface checks are done at compile time, the compiler knows what value is passed to a function expecting an interface, and if the value does not satisfies the interface, the program will not compile. However, there are certain situations in which the compiler does not know the value ahead of time and the check will have to happen at run-time and, if the check fail, the program will panic.
+
+To avoid these run-time checks and, when it is necessary to guarantee within a package implementing a type that this type satisfies an interface, you can do the following:
+
+```go
+// Replace `io.Writer` with the interface you need to ensure compliance
+// with, and `customType` with the type to be checked.
+var _ io.Writer = (*customType)(nil)
+```
+
+Here the blank identifier is used to create an unallocated variable with an interface type. Then, a `nil` pointer of the type that needs checking is created and affected to that interface type. This method allows for interface static check and has no impact on memory since the variable is never allocated thanks to the blank identifier, and neither is the pointer since it is `nil`.
+
+
+
 ## Defining interfaces on the producer side
 
 This one is more a design mistakes than a technical one and is very well explained in [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them). 
 
-When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Let's remember that *"abstraction should be discovered, not created"*.
+When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Below is a simple example of defining an interface of the producer side which create a useless abstraction for any customer of that package.
+
+```go
+package producer
+
+type Vehicle interface {
+    Start()
+    Stop()
+    Refill()
+}
+
+type ThermalCar struct {}
+
+func (t ThermalCar) Start() {}
+func (t ThermalCar) Stop() {}
+func (t ThermalCar) Refill() {}
+```
+
+```go
+package customer
+
+// ElectricCar does not implement the producer `Vehicle` interface
+// since it uses `Charge` instead of `Refill`, making the producer
+// interface useless.
+
+type ElectricCar struct {}
+
+func (e ElectricCar) Start() {}
+func (e ElectricCar) Stop() {}
+func (e ElectricCar) Charge() {}
+```
+
+Rare exceptions to this rules are when the language team foresee interfaces are very generic and useful for most programs such as `io.Writer` or `io.Reader`. Let's remember that *"abstraction should be discovered, not created"*.
 
 <br>
 
