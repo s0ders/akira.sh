@@ -7,7 +7,7 @@ theme = "nightfall"
 user = "s0ders"
 hostname = "akira.sh"
 SiteDescription = "Yet another software engineering blog"
-footerHtml = 'Built with <i class="fa-solid fa-heart" style="color:#d4153e"></i> using <a href="https://gohugo.io" class="footerLink">Hugo</a>'
+footerHtml = ''
 
   [params.author]
     name = "Maxime T."
