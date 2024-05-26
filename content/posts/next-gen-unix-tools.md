@@ -2,7 +2,7 @@
 title: "Modern UNIX tools"
 date: 2024-05-26T16:52:00+01:00
 draft: false
-tags: ['Go']
+tags: ['UNIX']
 ---
 # Introduction
 <!--start-summary-->
