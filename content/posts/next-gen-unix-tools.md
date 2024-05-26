@@ -7,7 +7,7 @@ tags: ['Go']
 # Introduction
 <!--start-summary-->
 
-If you work in a UNIX terminal on a daily basis, there are tools you need to master. These includes: `grep`, `find`, a text editor such as Vim or Emacs, etc.
+If you work in a UNIX terminal on a daily basis, there are tools you need to master. These include: `grep`, `find`, a text editor such as Vim or Emacs, etc.
 
 During the last couple of years, some incredibly cool open-source projects have brought us some new CLI tools to work in a faster and simpler way. This post tries to list those I use the most in my day-to-day life.
 
@@ -16,12 +16,12 @@ During the last couple of years, some incredibly cool open-source projects have 
 # Tools
 
 - [bat](https://github.com/sharkdp/bat), a replacement of `cat` bringing many useful features (e.g., syntax highlighting, Git integration, paging)
-- [chezmoi](https://www.chezmoi.io/), a simple tool to manage your dotfiles across multiples machines
+- [chezmoi](https://www.chezmoi.io/), a simple tool to manage your dotfiles across multiple machines
 - [dive](https://github.com/wagoodman/dive), a tool for exploring Docker image layers and contents
 - [fd](https://github.com/sharkdp/fd), a faster and more user-friendly alternative to `find`
 - [just](https://github.com/casey/just), a command runner that brings many improvements over [Make](https://www.gnu.org/software/make/)[^1]
 - [jq](https://github.com/jqlang/jq), a command-line JSON processor (think `awk` but for JSON)
-- [ripgrep](https://github.com/BurntSushi/ripgrep), a line search tools like `grep`, but faster and more user-friendly
+- [ripgrep](https://github.com/BurntSushi/ripgrep), a line search tool like `grep`, but faster and more user-friendly
 - [starship](https://starship.rs/), a tool to customize your prompt in a simple way using TOML
 - [tmux](https://github.com/tmux/tmux), a powerful terminal multiplexer, I personally find it more user-friendly than `screen`
 
