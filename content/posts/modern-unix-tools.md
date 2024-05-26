@@ -14,7 +14,7 @@ During the last couple of years, some incredibly cool open-source projects have 
 
 # Tools
 
-- [bat](https://github.com/sharkdp/bat), a replacement of `cat` bringing many useful features (e.g., syntax highlighting, Git integration, paging)
+- [bat](https://github.com/sharkdp/bat), a replacement of `cat` bringing many useful features (e.g. syntax highlighting, Git integration)
 - [chezmoi](https://www.chezmoi.io/), a simple tool to manage your dotfiles across multiple machines
 - [dive](https://github.com/wagoodman/dive), a tool for exploring Docker image layers and contents
 - [fd](https://github.com/sharkdp/fd), a faster and more user-friendly alternative to `find`
