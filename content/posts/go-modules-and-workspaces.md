@@ -1,7 +1,7 @@
 ---
 title: "Go Modules and Workspace"
 date: 2024-05-23T23:03:00+01:00
-draft: false
+draft: true
 tags: ['Go']
 ---
 # Introduction
