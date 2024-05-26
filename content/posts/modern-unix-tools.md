@@ -2,6 +2,7 @@
 title: "Modern UNIX Tools"
 date: 2024-05-26T17:28:34+02:00
 draft: false
+tags: ['UNIX']
 ---
 # Introduction
 <!--start-summary-->
@@ -20,6 +21,7 @@ During the last couple of years, some incredibly cool open-source projects have 
 - [fd](https://github.com/sharkdp/fd), a faster and more user-friendly alternative to `find`
 - [just](https://github.com/casey/just), a command runner that brings many improvements over [Make](https://www.gnu.org/software/make/)[^1]
 - [jq](https://github.com/jqlang/jq), a command-line JSON processor (think `awk` but for JSON)
+- [neovim](), a Vim-fork designed to be highly extensible, [NvChad](https://nvchad.com/) offers a solid default configuration
 - [ripgrep](https://github.com/BurntSushi/ripgrep), a line search tool like `grep`, but faster and more user-friendly
 - [starship](https://starship.rs/), a tool to customize your prompt in a simple way using TOML
 - [tmux](https://github.com/tmux/tmux), a powerful terminal multiplexer, I personally find it more user-friendly than `screen`
