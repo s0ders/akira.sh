@@ -1,8 +1,7 @@
 ---
-title: "Modern UNIX tools"
-date: 2024-05-26T16:52:00+01:00
+title: "Modern UNIX Tools"
+date: 2024-05-26T17:28:34+02:00
 draft: false
-tags: ['UNIX']
 ---
 # Introduction
 <!--start-summary-->
