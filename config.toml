@@ -1,7 +1,7 @@
 baseURL = 'https://akira.sh/'
 languageCode = 'en-us'
 title = 'akira.sh'
-theme = ["nightfall", "matomo"]
+theme = "nightfall"
 
 [params]
 user = "s0ders"
@@ -29,10 +29,6 @@ footerHtml = " "
   [[params.meta]]
   favicon = true
   description = "Personnal blog of a Go software engineer"
-
-  [[params.matomo]]
-  url = "https://akira.sh"
-  id = 1
 
 [menu]
   [[menu.header]]
