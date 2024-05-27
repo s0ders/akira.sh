@@ -29,7 +29,7 @@ footerHtml = " "
   key = 2
   name = "rss"
   url = "https://akira.sh/index.xml"
-  icon = "fa-rss"  
+  icon = "fa-solid fa-rss"  
 
   [[params.meta]]
   favicon = true
