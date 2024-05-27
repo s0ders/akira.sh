@@ -3,3 +3,4 @@ create-post name:
 
 update-theme:
     git submodule update --remote themes/nightfall
+
