@@ -19,6 +19,7 @@ During the last couple of years, some incredibly cool open-source projects have 
 - [chezmoi](https://www.chezmoi.io/), a simple tool to manage your dotfiles across multiple machines
 - [dive](https://github.com/wagoodman/dive), a tool for exploring Docker image layers and contents
 - [fd](https://github.com/sharkdp/fd), a faster and more user-friendly alternative to `find`
+- [eza](https://github.com/eza-community/eza), a modern replacement for `ls`
 - [just](https://github.com/casey/just), a command runner that brings many improvements over [Make](https://www.gnu.org/software/make/)[^1]
 - [jq](https://github.com/jqlang/jq), a command-line JSON processor (think `awk` but for JSON)
 - [neovim](), a Vim-fork designed to be highly extensible, [NvChad](https://nvchad.com/) offers a solid default configuration
