@@ -17,19 +17,19 @@ footerHtml = " "
   key = 0
   name = "github"
   url = "https://github.com/s0ders"
-  icon = "fa-brands fa-github"  
+  icon = "github"  
 
   [[params.social]]
   key = 1
   name = "linkedin"
   url = "https://www.linkedin.com/in/maxime-tx"
-  icon = "fa-brands fa-linkedin"  
+  icon = "linkedin"  
 
   [[params.social]]
   key = 2
   name = "rss"
   url = "https://akira.sh/index.xml"
-  icon = "fa-solid fa-rss"  
+  icon = "rss"  
 
   [[params.meta]]
   favicon = true
