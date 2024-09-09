@@ -131,7 +131,7 @@ var foo Stringer = CustomInt(1)
 
 Behind the scenes, the `Stringer` interface in `foo` is stored as depicted below, where arrows symbolize pointers.
 
-![Interface memory model](itable.png)
+![Interface memory model](itable.webp)
 
 Now that we understand how interfaces are modeled, we can understand the followings:
 
