@@ -17,7 +17,7 @@ These two features are a consequence of how Go treats constants, so let's dive i
 
 # Terminology
 
-In Go a constant can be defined using the `const` keyword. Constants can only hold scalar values - understand "primitive types" - such as `1`, `3.14`, `true` or `Hello world`. These values are called "constants" in the context of Go.
+In Go a constant can be defined using the `const` keyword. Constants can only hold scalar values - understand "primitive types" - such as `1`, `3.14`, `true` or `"Hello world"`. These values are called "constants" in the context of Go.
 
 These constants, such as `3.14`, can be assigned to variables. They will remain constants but the variable value itself can be changed. Let's take the following variable for instance, `pi := 3.14`, if you update `pi` you will update its value not `3.14` which is why it is said that `3.14` is a constant, it cannot be changed to something else.
 
