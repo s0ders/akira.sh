@@ -44,7 +44,11 @@ For a conversion to work, the [Go specification](https://go.dev/ref/spec#Convers
 
 Let's refer to the [specification](https://go.dev/ref/spec#Representability) once more: "a constant `x` is representable by a value of type `T` [...] if one of the following conditions applies: `x` is in the set of values determined by `T`, `T` is a floating-point type and `x` can be rounded to `T`'s precision without overflow, `T` is a complex type, and `x`'s components `real(x)` and `imag(x)` are representable by values of `T`'s component type (`float32` or `float64`)."
 
-In Layman's terms, the first constraint states that for a value to be converted to a certain type, it must belong to the type value set, for instance `-1` cannot be converted to an `uint` since unsigned integers' value set does not contain negative integers. The second constraints states a constant value can be converted to a `float32` or `float64` if it the value fits within the type range. For instance, IEEE 754 double precision, or `float64`, has a value range of around `[-1.8e308, 1.8e308]`, hence, anything that does not fit in that range can't be converted to a `float64` or else it will cause an overflow. The third constraints regarding complex types is self explanatory if you ever worked with complex numbers so I won't dwell on it.
+In Layman's terms, the first constraint states that for a value to be converted to a certain type, it must belong to the type value set, for instance `-1` cannot be converted to an `uint` since unsigned integers' value set does not contain negative integers. 
+
+The second constraints states a constant value can be converted to a `float32` or `float64` if it the value fits within the type range. For instance, IEEE 754 double precision, or `float64`, has a value range of around `[-1.8e308, 1.8e308]`, hence, anything that does not fit in that range can't be converted to a `float64` or else it will cause an overflow. 
+
+The third constraints regarding complex types is self explanatory if you ever worked with complex numbers so I won't dwell on it.
 
 
 
@@ -91,6 +95,7 @@ So if we consider integer constants, they have a minimum precision of 256 bits w
 ```go
 // Allowed
 bigNumber := 1e999 / 1e998 // bigNumber == 10
+
 // Not allowed, overflow
 var x = 1e999
 var y = 1e998
@@ -111,6 +116,5 @@ The value of `x := 0.1 + 0.2` is precisely `0.3` because `0.1` and `0.2` are num
 
 That's it ! I hope you learned a few things with this small post, if you did, please share it to whoever you think might also be interested and if you want more details I invite you to read the Go specification.
 
-<hr>
 
 [^1]: Long story short, IEEE 754 is a standard that define how to store number whose values can be infinitely precise in finite memory which is done using approximation, hence why 0.1 + 0.2 is not equal to 0.3 when using this standard.
