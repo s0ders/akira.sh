@@ -48,7 +48,7 @@ In Layman's terms, the first constraint states that for a value to be converted 
 
 The second constraints states that a constant value can be converted to a `float32` or `float64` if the value fits within the type range. For instance, IEEE 754 double precision, or `float64`, has a value range of around `[-1.8e308, 1.8e308]`, hence, anything that does not fit into that range cannot be converted to a `float64` or else it will overflow. 
 
-The third constraints regarding complex types is self explanatory if you ever worked with complex numbers so I won't dwell on it.
+The third constraint regarding complex types is self explanatory if you ever worked with complex numbers so I won't dwell on it.
 
 
 
