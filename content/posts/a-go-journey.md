@@ -24,8 +24,9 @@ Before learning about style guidelines and optimizations techniques, one must kn
 - [Go by Example](https://gobyexample.com/), a website which offers a tour of from basics (e.g. slices, maps, structures) to more advanced features (e.g. concurrency, templating, testing).
 - [Effective Go](https://go.dev/doc/effective_go), written by the Go team, this guide lays down advices to write clear, idiomatic code and highlight severals gotchas. This one is, in my opinion, a must read if you are serious about learning Go.
 - [Go FAQ](https://go.dev/doc/faq), this FAQ answers dozens of interesting questions such as: why is my binary so large ? why is my nil error not equal to nil ? how can I guarantee my type satisfies an interface ?
-- [Go Landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f), a short list of three common mistakes that can trick beginners and hardened developers alike.[^1]
+- [Go Landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f), three common mistakes that can trick beginners and hardened developers alike.[^1]
 - [Let's Go](https://lets-go.alexedwards.net/), Alex Edward's book is a very good reading to learn how to build clean, efficient and secure web application.
+- [Go Proverbs](https://go-proverbs.github.io/), list of short Go idioms inspired by Rob Pike's[^2] [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) at Gopherfest.
 
 <br>
 
@@ -44,8 +45,8 @@ Even-though Go is a language with several idioms, there is still room for interp
 You now understand the language's primitives, idioms, features and most common mistakes. Writing reliable code means that you must go the extra-miles and, sometimes, understand the language nuts and bolts. The books and talks below were conceived for that very purpose.
 
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them), my favorite resource in this post. Teiva Harsanyi's book is a must read for any serious Go developer. From common data types mistakes to advanced compiler and memory optimizations, this book has it all. Knowing these 100 mistakes will, without a doubt, make you a better Go developer.
-- [research!rsc](https://research.swtch.com/), Russ Cox[^2] blog on programming, it contains several articles that give an insight on how Go is designed, be it the memory model or how are interfaces and structures modeled in memory.
-- [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), this half an hour talk offers lots of valuable informations on one of Go most special pre-declared identifer[^3].
+- [research!rsc](https://research.swtch.com/), Russ Cox[^3] blog on programming, it contains several articles that give an insight on how Go is designed, be it the memory model or how are interfaces and structures modeled in memory.
+- [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), this half an hour talk offers lots of valuable informations on one of Go most special pre-declared identifer[^4].
 
 <br>
 
@@ -54,7 +55,7 @@ You now understand the language's primitives, idioms, features and most common m
 Go is a rapidly evolving language with features added to every new version. At the time of this post, version 1.22 is in pre-release and, among other things, is fixing one of the most common gotchas[^1]. Being a software engineer also means knowing about what direction the language is taking and what new features are discussed. Below are two links to stay updated with how the Go ecosystem is evolving.
 
 - [The Go Blog](https://go.dev/blog/), the official Go blog. This is where news about the language are published. You can also find articles detailing a specific feature of the language such as type parameters or structured logging.
-- [Golang Weekly](https://golangweekly.com/), a weekly newsletter to stay updated about the ecosystem as well as the library and tools built in Go. I highly recommend subscribing to it.
+- [Golang Weekly](https://golangweekly.com/), a weekly newsletter to stay updated about the ecosystem as well as libraries and tools built in Go. I highly recommend subscribing to it.
 
 <br>
 <br>
@@ -64,5 +65,6 @@ Thank you for reading this post. I hope these resources can be as useful for you
 
 
 [^1]: The first mistake regarding loop variables scoped outside the loop is [now fixed](https://go.dev/blog/loopvar-preview) in Go 1.22
-[^2]: Russ Cox is a member of the Go development team.
-[^3]: Yes, you read that right, `nil` is not a keyword but a pre-declared identifier and can therefore be redefined, this is one of the many interesting informations you'll get out of this talk.
+[^2]: Rob Pike is one of the Go language creators.
+[^3]: Russ Cox is a member of the Go development team.
+[^4]: Yes, you read that right, `nil` is not a keyword but a pre-declared identifier and can therefore be redefined, this is one of the many interesting informations you'll get out of this talk.
