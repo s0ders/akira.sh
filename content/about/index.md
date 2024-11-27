@@ -10,9 +10,9 @@ showMetadata: false
 Software engineering and automation enthusiast.
 <br> 
 My main interests are, in no particular order: 
-- Go software development
+- Go software engineering 
 - System administration
-- Containers and orchestration
+- Containers and their orchestration
 
 ## Why
 
