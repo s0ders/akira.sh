@@ -43,7 +43,7 @@ footerHtml = " "
   
   [[menu.header]]
     name = "books"
-    weight = 1
+    weight = 0
     url = "/books"
 
   [[menu.header]]

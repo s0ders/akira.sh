@@ -5,13 +5,13 @@ draft: false
 showMetadata: false
 ---
 
-## Reading List
+
 
 List of books that are well worth their price and that helped me level up my skills as a software engineer.
 
 
 
-Books:
+<br><br>
 
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them)
 - [Designing Data Intensive Application](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/)
