@@ -38,7 +38,7 @@ footerHtml = " "
 [menu]
   [[menu.header]]
     name = "posts"
-    weight = 10
+    weight = 1
     url = "/posts"
   
   [[menu.header]]
@@ -48,7 +48,7 @@ footerHtml = " "
 
   [[menu.header]]
     name = "about"
-    weight = 1
+    weight = 10
     url = "/about"
 
 [markup]
