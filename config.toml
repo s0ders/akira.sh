@@ -22,7 +22,7 @@ footerHtml = " "
   [[params.social]]
   key = 1
   name = "linkedin"
-  url = "https://www.linkedin.com/in/maxime-tx"
+  url = "https://www.linkedin.com/in/maxime-tueux"
   icon = "linkedin"  
 
   [[params.social]]
