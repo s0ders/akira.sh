@@ -26,7 +26,7 @@ Besides, most of my learning sources are various blogs so I wanted to try the ex
 
 ## PGP
 
-Want to email me some sensitive informations ? Here's my public GPG key.
+Want to email me some sensitive information ? Here's my public key.
 
 Please don't send me classified documents, I am **not** a War Thunder developer.
 
