@@ -29,9 +29,15 @@ footerHtml = " "
   key = 2
   name = "rss"
   url = "https://akira.sh/index.xml"
-  icon = "rss"  
+  icon = "rss"
 
-  [[params.meta]]
+  [[params.social]]
+    key = 3
+    name = "mail"
+    url = "mailto:s0ders@akira.sh"
+    icon = "mail"
+
+[[params.meta]]
   favicon = true
   description = "Personnal blog of a Go software engineer"
 
