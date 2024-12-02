@@ -14,28 +14,28 @@ footerHtml = " "
     email = "s0ders[at]pm.me"
 
   [[params.social]]
-  key = 0
-  name = "github"
-  url = "https://github.com/s0ders"
-  icon = "github"  
+    key = 0
+    name = "github"
+    url = "https://github.com/s0ders"
+    icon = "github"
 
   [[params.social]]
-  key = 1
-  name = "linkedin"
-  url = "https://www.linkedin.com/in/maxime-tueux"
-  icon = "linkedin"  
+    key = 1
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/maxime-tueux"
+    icon = "linkedin"
 
   [[params.social]]
-  key = 2
-  name = "rss"
-  url = "https://akira.sh/index.xml"
-  icon = "rss"
-
-  [[params.social]]
-    key = 3
+    key = 2
     name = "mail"
     url = "mailto:s0ders@akira.sh"
     icon = "mail"
+
+  [[params.social]]
+    key = 3
+    name = "rss"
+    url = "https://akira.sh/index.xml"
+    icon = "rss"
 
 [[params.meta]]
   favicon = true
