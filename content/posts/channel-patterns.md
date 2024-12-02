@@ -125,6 +125,8 @@ case t <-time.After(3 * time.Second):
 }
 ```
 
+Note that if you want to timeout in a for/select loop, you need to assign the channel returned by `time.After` outside the loop.
+
 
 
 ### Notification channels
@@ -197,9 +199,15 @@ func main() {
 
 
 
+### Generator functions
+
+
+
+
+
 ## Advanced patterns
 
-### Generator functions
+### 
 
 
 
