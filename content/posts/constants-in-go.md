@@ -27,7 +27,7 @@ They will remain constants but the variable value itself can be changed. Let's t
 
 The introduction stated that, since Go is statically typed, numeric types cannot be mixed and matched. That does not mean operations can't be performed with the values they hold, an `int32` can't be added to an `int64` yet we may still add their values using *conversion*. 
 
-Type conversion, which is not to be confused with *[type assertion](https://go.dev/ref/spec#Type_assertions)*, is the process of changing an expression to a type specified by the conversion:
+Type conversion, which is not to be confused with **[type assertion](https://go.dev/ref/spec#Type_assertions)**, is the process of changing an expression to a type specified by the conversion:
 
 ```go
 var foo int64 = 2
@@ -38,7 +38,7 @@ var bar int32 = 3
 result := foo * int64(bar)
 ```
 
-For a conversion to work, the [Go specification](https://go.dev/ref/spec#Conversions) states that “value `x` can be converted to type `T` if `x` is *representable* by a value of `T`”. 
+For a conversion to work, the [Go specification](https://go.dev/ref/spec#Conversions) states that “value `x` can be converted to type `T` if `x` is **representable** by a value of `T`”. 
 
 What is representability then ?  
 
@@ -58,7 +58,7 @@ The third constraint regarding complex types is self explanatory if you ever wor
 
 When a constant is assigned to a variable such as `i := 0`, you may wonder how does the compiler decide which type `i` is. We may be very explicit about it and use conversion such as `i := int64(0)` but decorating your code with conversions everywhere would feel a bit clumsy.
 
-It turns out that constant have a *default type*.
+It turns out that constant have a **default type**.
 
 For string and boolean constant the default type is pretty obvious but what about numeric constants ? 
 
@@ -72,7 +72,7 @@ var i CustomInt = 1
 ```
 Since `1` is a numeric constant with its default type being `int` it should not be able to be assigned to `CustomInt`, right ?
 
-Well `1` is actually an *untyped* numeric constant whose default type is `int` unless another one, in which it can be represented, is specified.
+Well `1` is actually an **untyped** numeric constant whose default type is `int` unless another one, in which it can be represented, is specified.
 
 Constants can nonetheless be typed as shown below. In which case they can no longer be assigned to an other type without conversion:
 
@@ -93,7 +93,7 @@ To recap, until they are typed, constants live a more flexible type space and ca
 
 Let's now understand why computation with numeric constants is more precise than with typed variables. If we read the [Go specification](https://go.dev/ref/spec#Constants) section on constants we understand that "numeric constants represent exact values of arbitrary precision and do not overflow". 
 
-What does *arbitrary precision* means ? 
+What does **arbitrary precision** means ? 
 
 It means that the Go specification does not dictate precisely how many bits a compiler must use to store numeric constants though there are some lower bounds. Every implementation must:
 
@@ -120,7 +120,7 @@ This explains why computation with numeric constants is more precise until the v
 
 Let's finish by answering the two questions raised in the introduction now that we understand how constants work in Go.
 
-If `math.Pow(2, 16)` is valid, it is because `2` and `16` are *untyped numeric constants* and can be converted to `float64` since they are representable as such a type.
+If `math.Pow(2, 16)` is valid, it is because `2` and `16` are **untyped numeric constants** and can be converted to `float64` since they are representable as such a type.
 
 The value of `x := 0.1 + 0.2` is precisely `0.3` because `0.1` and `0.2` are numeric constants that live in an *arbitrary precision space* of a minimum of 256 bits until they are assigned to a variable. That's why computation is more precise and less prone to approximation.
 
