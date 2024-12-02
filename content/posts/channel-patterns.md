@@ -19,12 +19,12 @@ Let's dive in the common patterns you might encounter when dealing with channels
 
 ## Quick recap
 
-- A Go program finishes when its main goroutine finishes, it does not wait for other goroutines by default.
-- Channels are unbuffered by default, meaning a sender while block until there is a receiver and vice versa.
+- A Go program finishes when its main goroutine finishes, it does not wait for other goroutines to finish.
+- Channels are unbuffered by default, meaning a sender while block until there is a receiver and a receiver will block until there is a sender.
 - Channels can be buffered. A sender can send values without a receiver on the other end until the buffer is full and a receiver can read from the buffer without a sender on the other end until the buffer is emptied.
-- Channels can have a direction restricting the operation that can be done with them. Channels with direction are either read only or send only.
+- Channels are bidirectional by default but can be assigned a direction restricting the operation that can be done with them. Channels with direction are either read only or send only.
 - Channels can be closed using the `close()` built-in.
-- A closed channels can still be read from and it will return the default value of the type it conveys.
+- A closed channels can still be read from and will return the default value of the type it conveys. However, sending a message to a close channel will raise an error.
 - When receiving from a channel, a second value can be received indicating whether the channel is closed or not such as `v, ok := <-ch`.
 - A channel can be `nil`, writing to or reading from a `nil` channel will block.
 
@@ -34,7 +34,7 @@ Let's dive in the common patterns you might encounter when dealing with channels
 
 ### For and select loop
 
-The `select` statement allows to deal with multiple channels operations and execute the one that unblocks first. In the code below, if `sendChannel` is ready first, we will send `0` but if `readChannel` is ready first, we will read and print its value. The point is: only one case of the `select` statement is executed and it is the one that's first ready. 
+The `select` statement allows to deal with multiple channels operations and execute the one that unblocks first. In the code below, if `sendChannel` is ready first, we will send `0` but if `readChannel` is ready first, we will read and print its value. The point is: only one case of the `select` statement is executed and it is the one that's unblocks first. 
 
 ```go
 select {
@@ -68,7 +68,7 @@ Both of these issues can be fixed using the next pattern.
 
 ### Using `nil` channels
 
-Reading from or writing to a `nil` channel — understand a channel whose value is actually `nil` — is a **blocking** operation. We previously saw that a `select` statement chose whichever operations unblocks first. We also know that a closed channels is always unblocked and returns the default value of the type it conveys, do you see where I am going with that ?
+Reading from or writing to a `nil` channel — understand a channel whose value is actually `nil` — is a **blocking** operation. We previously saw that a `select` statement choses whichever operations unblocks first. We also know that a closed channels is always unblocked and returns the default value of the type it conveys, do you see where I am going with that ?
 
 If we assign `nil` to a closed channel, we effectively disable that case in a `select` statement since reading from or sending to a channel is a blocking operation. This is a very important piece of knowledge that every Go developer working with channels should be aware of.
 
@@ -91,6 +91,8 @@ for ch1 != nil || ch2 != nil {
 }
 ```
 
+We now have a stop condition for the loop and remove cases from the `select` statement once the channel on that case is closed.
+
 
 
 ### Non blocking operations
@@ -104,7 +106,7 @@ case ch1 <- "foo":
 case v <- ch2:
     // ...
 default:
-    fmt.Println("Neither channel 1 or 2 were ready, moving on...")
+    fmt.Println("Neither channel 1 or 2 were ready, moving on.")
 }
 ```
 
@@ -112,7 +114,7 @@ default:
 
 ### Timing out operations
 
-Let's expend upon the previous pattern: this time we want to move on from the `select` cases if neither of them proceeded after a given amount of time, meaning: we want to implement a time out operation. The `time` package from standard library has a `time.After` function that returns a read-only channels which sends a single value, the time it executed at, after a given amount of time which is exactly what we need.
+Let's expend upon the previous pattern: this time we want to move on from the `select` cases if neither of them proceeded after a given amount of time, meaning: we want to implement a time out. The `time` package from standard library has a `time.After` function that returns a read-only channels which sends a single value (the time it executed at) after a given amount of time, which is exactly what we need.
 
 ```go
 select {
@@ -131,7 +133,7 @@ Note that if you want to timeout in a for/select loop, you need to assign the ch
 
 ### Notification channels
 
-When sending information on a channel to notify that something happened, the type of the notification is of little importance. We could use a channel of `int` or `bool` but then we would be wasting a little bit of memory. 
+When sending information on a channel to notify that something happened, the type of the notification is of little importance. We could use a channel of `int` or `bool` but then we would be wasting memory and other developers reading that code might struggle understanding if the value sent has a specific meaning.
 
 The *de facto* type for notification channels is `chan struct{}`, indeed `struct{}` is the only value that uses zero bytes of memory and explicitly signals that this channel is meant for notification only and than we don't care about the value it conveys, we only care about the fact that a notification was sent or received.
 
@@ -199,19 +201,7 @@ func main() {
 
 
 
-### Generator functions
-
-
-
-
-
 ## Advanced patterns
-
-### 
-
-
-
-
 
 ### Pipeling
 
