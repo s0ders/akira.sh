@@ -48,9 +48,9 @@ footerHtml = " "
     url = "/posts"
   
   [[menu.header]]
-    name = "books"
+    name = "learning"
     weight = 5
-    url = "/books"
+    url = "/learning"
 
   [[menu.header]]
     name = "about"
