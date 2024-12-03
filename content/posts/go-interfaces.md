@@ -203,9 +203,13 @@ The solution to this issue is to directly return `nil` and not an interface wrap
 
 To understand this mistake, we must first understand two things: what methods a type has access to and *addressability*.
 
-A type *T has access to both pointer-receiver methods and value methods, this is because for value methods, a pointer can always be dereferenced to access the value it points to. On the other hand, a type T only has access to value-receiver methods. The catch is that the language allows for values which are *addressable* to use pointer-receiver methods transparently, in which case the runtime simply get the address of that value. 
+A type *T has access to both pointer-receiver methods and value methods, this is because for value methods, a pointer can always be dereferenced to access the value it points to. On the other hand, a type T only has access to value-receiver methods. 
 
-But not all values are addressable, meaning the runtime cannot get the address of every values. Some notably *unaddressable* values are: interface values and map values. The reason behind this inability to get the values' addresses depend for every type. For maps, it is because the values might get rearranged during the program lifetime so their addresses might change. For interfaces, it is because passing the underlying value's address to a pointer-receiver method might lead to the value being changed which would cause inconsistency if the value no longer matches the type stored in the interface.
+The catch is that the language allows for values which are *addressable* to use pointer-receiver methods transparently, in which case the runtime simply get the address of that value. 
+
+But not all values are addressable, meaning the runtime cannot get the address of every values. Some notably *unaddressable* values are: interface values and map values. The reason behind this inability to get the values' addresses depend for every type. 
+
+For maps, it is because the values might get rearranged during the program lifetime so their addresses might change. For interfaces, it is because passing the underlying value's address to a pointer-receiver method might lead to the value being changed which would cause inconsistency if the value no longer matches the type stored in the interface.
 
 ```go
 type Incrementer interface {
