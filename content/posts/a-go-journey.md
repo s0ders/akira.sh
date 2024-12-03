@@ -67,4 +67,4 @@ Thank you for reading this post. I hope these resources can be as useful for you
 [^1]: The first mistake regarding loop variables scoped outside the loop is [now fixed](https://go.dev/blog/loopvar-preview) in Go 1.22
 [^2]: Rob Pike is one of the Go language creators.
 [^3]: Russ Cox is a member of the Go development team.
-[^4]: Yes, you read that right, `nil` is not a keyword but a pre-declared identifier and can therefore be redefined, this is one of the many interesting informations you'll get out of this talk.
+[^4]: Yes, you read that right, `nil` is not a keyword but a pre-declared identifier and can therefore be redefined, this is one of the many interesting information you'll get out of this talk.
