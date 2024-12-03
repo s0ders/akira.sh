@@ -63,7 +63,7 @@ func TestUppercase(t *testing.T) {
 }
 ```
 
-It is possible to combine multiple interfaces together when it makes sens by embedding them. Common examples are `io.ReadWritter` or `io.ReadCloser`.
+It is possible to combine multiple interfaces together when it makes sens by embedding them. Common examples are `io.ReadWriter` or `io.ReadCloser`.
 
 ```go
 type ReadCloser interface {

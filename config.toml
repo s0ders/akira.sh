@@ -39,7 +39,7 @@ footerHtml = " "
 
 [[params.meta]]
   favicon = true
-  description = "Personnal blog of a Go software engineer"
+  description = "Personal blog of a Go software engineer"
 
 [menu]
   [[menu.header]]

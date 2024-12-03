@@ -6,7 +6,7 @@ draft: true
 
 # Introduction
 
-Semantic Versioning, often abriviated SemVer, is a system to version public APIs (e.g., packages, libraries) that tries to avoid the [depency hell](https://en.wikipedia.org/wiki/Dependency_hell) problem that arise when dealing with software project's multiple dependencies.
+Semantic Versioning, often abbreviated SemVer, is a system to version public APIs (e.g., packages, libraries) that tries to avoid the [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell) problem that arise when dealing with software project's multiple dependencies.
 
 This specification brings a set of rule that, when followed by the project and its dependencies, reduce the risks of falling into the dependency hell problem and allows for human to quickly know what changed between two versions by taking a look at the two version numbers. It is assumed here that the reader is aware of the SemVer specification basic set of rules, otherwise they can be found on [their website](https://semver.org/spec/v2.0.0.html), it is a quick read.
 
@@ -34,14 +34,14 @@ Content:
 
 In the book [Software Engineering at Google](https://www.oreilly.com/library/view/software-engineering-at/9781492082781/), Titus Winter points the limitations of Semantic Versioning.
 
-First, it might over promise: 
+First, it might overpromise: 
 
 
 
 
 
-- Over promise (human error, hirum law)
-- Over constraints (lack of fine grained API, major bump for Foo() does not affect Bar() clients)
+- Over promise (human error, Hirum law)
+- Over constraints (lack of fine-grained API, major bump for Foo() does not affect Bar() clients)
 
 - Major version are not sacred: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred
 

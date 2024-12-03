@@ -20,7 +20,7 @@ My main interests are, in no particular order:
 
 I enjoy writing about topics I'm interested about and believe there's nothing like sharing knowledge to deepen your understanding about a subject.
 <br>
-Besides, most of my learning sources are various blogs so I wanted to try the exercice of sharing by writing succint post and I appreciate it so far.
+Besides, most of my learning sources are various blogs, so I wanted to try the exercise of sharing by writing succinct post and I appreciate it so far.
 
 
 

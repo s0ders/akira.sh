@@ -68,7 +68,7 @@ Both of these issues can be fixed using the next pattern.
 
 ### Using `nil` channels
 
-Reading from or writing to a `nil` channel — understand a channel whose value is actually `nil` — is a **blocking** operation. We previously saw that a `select` statement choses whichever operations unblocks first. We also know that a closed channels is always unblocked and returns the default value of the type it conveys, do you see where I am going with that ?
+Reading from or writing to a `nil` channel — understand a channel whose value is actually `nil` — is a **blocking** operation. We previously saw that a `select` statement chooses whichever operations unblocks first. We also know that a closed channels is always unblocked and returns the default value of the type it conveys, do you see where I am going with that ?
 
 If we assign `nil` to a closed channel, we effectively disable that case in a `select` statement since reading from or sending to a channel is a blocking operation. This is a very important piece of knowledge that every Go developer working with channels should be aware of.
 

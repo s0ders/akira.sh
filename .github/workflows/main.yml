@@ -9,7 +9,7 @@ defaults:
     shell: bash
 
 jobs:
-  spelling:
+  spell:
     name: Spell Check with Typos
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +20,8 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
+    needs:
+      - spell
     env:
       HUGO_VERSION: 0.139.3
     steps:
