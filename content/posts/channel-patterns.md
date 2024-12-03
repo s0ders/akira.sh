@@ -7,11 +7,11 @@ tags: ['Go']
 
 # Introduction
 
-Go concurrency model is a different than most C based language. Instead of directly letting us manipulate kernel-level thread, it provides us with user-level thread called *goroutine*. The Go runtime manages the placement of these goroutine onto kernel-level thread. Most importantly, Go provides us with an interesting way to communicate and coordinate between goroutines: channels.
+Go concurrency model is a different than most C based language. Instead of directly letting us manipulate kernel-level thread, it provides us with user-level thread called **goroutine**. The Go runtime manages the placement of these goroutine onto kernel-level thread. Most importantly, Go provides us with an interesting way to communicate and coordinate between goroutines: channels.
 
 Regular inter-thread communication mechanisms such as memory sharing and mutexes are available yet channels are a very interesting option. First introduced by C.A.R. Hoare in "[Communicating Sequential Processes](https://en.wikipedia.org/wiki/Communicating_sequential_processes)", channels are "pipes" in which concurrent processes can send or receive data. They provide a higher level tool than classic memory sharing tools and can make concurrent programming simpler to understand for us programmers. 
 
-Most of the time, using channels reduces the cognitive load of having to understand concurrent interactions and greatly diminishes the risk of race condition since it promotes an approach of *sharing memory by communication and not communication by sharing memory*.
+Most of the time, using channels reduces the cognitive load of having to understand concurrent interactions and greatly diminishes the risk of race condition since it promotes an approach of **sharing memory by communication and not communication by sharing memory**.
 
 Let's dive in the common patterns you might encounter when dealing with channels in Go programs.
 
@@ -41,7 +41,7 @@ select {
 case sendChannel <- 0
 	fmt.Println("Send: 0")
 case v <- readChannel:
-	fmt.Println("Read: ", v)
+	fmt.Println("Read:", v)
 }
 ```
 
@@ -95,7 +95,35 @@ We now have a stop condition for the loop and remove cases from the `select` sta
 
 
 
-### Non blocking operations
+### Notification channels
+
+When sending information on a channel to notify that something happened, the type of the notification is of little importance. We could use a channel of `int` or `bool` but then we would be wasting memory and other developers reading that code might struggle understanding if the value sent has a specific meaning.
+
+The *de facto* type for notification channels is `chan struct{}`, indeed `struct{}` is the only value that uses zero bytes of memory and explicitly signals that this channel is meant for notification only and than we don't care about the value it conveys, we only care about the fact that a notification was sent or received.
+
+```go
+func worker(ch chan<- struct) {
+    fmt.Println("Performing CPU heavy computation...")
+
+    // Once computation is over
+    ch <- struct{}{}
+}
+
+func main() {
+    ch := make(chan struct{})
+    
+    go worker(ch)
+    
+    <-ch
+    fmt.Println("Computation done")
+}
+```
+
+Note that the example above only illustrate what notification channels are. For synchronization, a `sync.WaitGroup` is usually more robust and appropriate.
+
+
+
+### Using the default case
 
 Sometimes you want to try to send or receive from a channel and move on if the goroutine on the other end of the channel is not ready. The `default` case of the `select` statement provides this exact feature:
 
@@ -119,11 +147,11 @@ Let's expend upon the previous pattern: this time we want to move on from the `s
 ```go
 select {
 case v <- ch1:
-    fmt.Println("Channel 1: ", v)
+    fmt.Println("Channel 1:", v)
 case v <- ch2:
-    fmt.Println("Channel 2: ", v)
+    fmt.Println("Channel 2:", v)
 case t <-time.After(3 * time.Second):
-    fmt.Println("Timed out after 3 seconds at: ", t)
+    fmt.Println("Timed out after 3 seconds at:", t)
 }
 ```
 
@@ -131,45 +159,17 @@ Note that if you want to timeout in a for/select loop, you need to assign the ch
 
 
 
-### Notification channels
+### Using context to signal cancellation and timeout
 
-When sending information on a channel to notify that something happened, the type of the notification is of little importance. We could use a channel of `int` or `bool` but then we would be wasting memory and other developers reading that code might struggle understanding if the value sent has a specific meaning.
-
-The *de facto* type for notification channels is `chan struct{}`, indeed `struct{}` is the only value that uses zero bytes of memory and explicitly signals that this channel is meant for notification only and than we don't care about the value it conveys, we only care about the fact that a notification was sent or received.
-
-```go
-func worker(ch chan<- struct) {
-    fmt.Println("Performing CPU heavy computation...")
-    // ...
-    // Once computation is over
-    ch <- struct{}{}
-}
-
-func main() {
-    ch := make(chan struct{})
-    
-    go worker(ch)
-    
-    <-ch
-    fmt.Println("Computation done")
-}
-```
-
-Note that the example above only illustrate what notification channels are. For synchronization, a `sync.WaitGroup` is usually more robust and appropriate.
-
-
-
-### Using context to signal cancellation or timeout
-
-The `context` package from the standard library offers a `context.Context` type that can be used to transmit signals and values across goroutines. Here the focus is on the cancellation and timeout aspect of a context.
+The `context` package from the standard library offers a `context.Context` type that can be used to transmit signals and values across goroutines. Let's focus on the cancellation and timeout aspect of a context.
 
 Specifically, the method that interest us are:
 
-- `Background`, returns the current goroutine context, each `With[..]` method builds upon an existing context
+- `Background`, returns the current goroutine context. Each `With[..]` method builds upon an existing context which can be retrieved using this function.
 
-- `WithCancel`, returns a cancel function that can be used to cancel the goroutines using that context
-- `WithTimeout`, can cancel goroutine using it after the given duration has passed
-- `WithDeadline`, can cancel goroutine using it after the given time is past
+- `WithCancel`, returns a cancel function that can be used to cancel the goroutines using that context.
+- `WithTimeout`, can cancel goroutine using it after the given duration has passed.
+- `WithDeadline`, can cancel goroutine using it after the given time is past.
 
 Now, how to know whether a context has been canceled or has "expired" ? Using the `Done` function and the associated `Err` function that returns an error explaining why the context is "done".
 
@@ -180,7 +180,7 @@ func worker(ctx context.Context, ch <-chan int) {
     	for { 
         	select {
         	case <-ctx.Done():
-            	fmt.Println("context is done: ", ctx.Err())
+            	fmt.Println("context is done:", ctx.Err())
             	return
         	case v, ok := <-ch:
             	// Do regular work
@@ -197,17 +197,24 @@ func main() {
 }
 ```
 
+This pattern is more of a "goroutine" and concurrency pattern but you will find yourself working with context very often when dealing with channels.
+
 **Tip**: if you are unsure what type of context to use, use `context.TODO()` which conveys the meaning of an unknown context at current time instead of `context.Background()`.
 
 
 
 ## Advanced patterns
 
-### Pipeling
+### Pipelining
 
 
 
 ### Fanning in and out
+
+- Order not guaranteed !!
+
+- Fan out good to fan work to a worker pool of gourinte
+- Fan in good to aggregate the results of a worker pool
 
 
 

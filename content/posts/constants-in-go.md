@@ -98,7 +98,7 @@ What does **arbitrary precision** means ?
 It means that the Go specification does not dictate precisely how many bits a compiler must use to store numeric constants though there are some lower bounds. Every implementation must:
 
 - Represent integer constants with *at least* 256 bits
-- Represent floating-point constants, including the parts of a complex constant, with a mantissa of at least 256 bits and a signed binary exponent of at least 16 bits.
+- Represent floating-point constants, including the parts of a complex constant, with a mantissa of at least 256 bits and a signed binary exponent of at least 16 bits
 
 If we consider integer constants, they have a minimum precision of 256 bits whereas `int` variable have a maximum precision of 64 bits. 
 
