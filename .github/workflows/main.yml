@@ -9,6 +9,15 @@ defaults:
     shell: bash
 
 jobs:
+  spelling:
+    name: Spell Check with Typos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: typos-action
+        uses: crate-ci/typos@2872c382bb9668d4baa5eade234dcbc0048ca2cf # v1.28.2
+
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
