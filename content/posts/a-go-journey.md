@@ -13,7 +13,7 @@ I began learning Go three years ago with a background of backend web developer. 
 
 Back when I discovered it, several features of the language had piqued my interest: statically linked binaries, easy-to-use primitive for concurrency, composition over inheritance, implicit interfaces, and most importantly: **Go is easy to learn yet hard to master**. 
 
-This last property highlights that Go was designed so that developers can quickly be productive using it. But of course, writing clean and efficient code means you need to understand the language primitives, idioms and sometimes, how things work under the hood.
+This last property highlights that Go was designed so that developers can quickly be productive using it. Yet, writing clean and efficient code requires you to understand the language primitives, idioms and sometimes, how things work under the hood.
 
 # The basics
 

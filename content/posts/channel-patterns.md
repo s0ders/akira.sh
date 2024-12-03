@@ -24,8 +24,8 @@ Let's dive in the common patterns you might encounter when dealing with channels
 - Channels can be buffered. A sender can send values without a receiver on the other end until the buffer is full and a receiver can read from the buffer without a sender on the other end until the buffer is emptied.
 - Channels are bidirectional by default but can be assigned a direction restricting the operation that can be done with them. Channels with direction are either read only or send only.
 - Channels can be closed using the `close()` built-in.
-- A closed channels can still be read from and will return the default value of the type it conveys. However, sending a message to a close channel will raise an error.
-- When receiving from a channel, a second value can be received indicating whether the channel is closed or not such as `v, ok := <-ch`.
+- A closed channels can still be read from and will return the default value of the type it conveys. However, sending a message to a closed channel will raise an error.
+- When receiving from a channel, a second value can be received indicating whether the channel is closed or not, such as `v, ok := <-ch`.
 - A channel can be `nil`, writing to or reading from a `nil` channel will block.
 
 
@@ -119,13 +119,13 @@ func main() {
 }
 ```
 
-Note that the example above only illustrate what notification channels are. For synchronization, a `sync.WaitGroup` is usually more robust and appropriate.
+Note that the example above only illustrates what notification channels are. For synchronization, a `sync.WaitGroup` is usually more robust and appropriate.
 
 
 
 ### Using the default case
 
-Sometimes you want to try to send or receive from a channel and move on if the goroutine on the other end of the channel is not ready. The `default` case of the `select` statement provides this exact feature:
+You may want to try to send or receive from a channel and move on if the goroutine on the other end of the channel is not ready. The `default` case of the `select` statement provides this exact feature:
 
 ```go
 select {
@@ -140,7 +140,7 @@ default:
 
 
 
-### Timing out operations
+### Timing out
 
 Let's expend upon the previous pattern: this time we want to move on from the `select` cases if neither of them proceeded after a given amount of time, meaning: we want to implement a time out. The `time` package from standard library has a `time.After` function that returns a read-only channels which sends a single value (the time it executed at) after a given amount of time, which is exactly what we need.
 
@@ -165,7 +165,7 @@ The `context` package from the standard library offers a `context.Context` type 
 
 Specifically, the method that interest us are:
 
-- `Background`, returns the current goroutine context. Each `With[..]` method builds upon an existing context which can be retrieved using this function.
+- `Background`, returns the current goroutine context. Each `With[...]` method builds upon an existing context which can be retrieved using this function.
 
 - `WithCancel`, returns a cancel function that can be used to cancel the goroutines using that context.
 - `WithTimeout`, can cancel goroutine using it after the given duration has passed.
@@ -197,9 +197,9 @@ func main() {
 }
 ```
 
-This pattern is more of a "goroutine" and concurrency pattern but you will find yourself working with context very often when dealing with channels.
+This pattern is more of a "goroutine" and concurrency pattern but you will find yourself working with contexts very often when dealing with channels which is why I included it.
 
-**Tip**: if you are unsure what type of context to use, use `context.TODO()` which conveys the meaning of an unknown context at current time instead of `context.Background()`.
+**Tip**: if you are unsure what type of context to pass on, use `context.TODO()` which conveys the meaning of an unknown context at current time instead of `context.Background()`.
 
 
 

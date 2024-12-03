@@ -1,11 +1,13 @@
 ---
-title: "~/books/"
+title: "~/learning/"
 date: 2024-11-27T11:00:00+01:00
 draft: false
 showMetadata: false
 ---
 
-List of books that are well worth their price and that helped me level up my skills as a software engineer.
+List of learning resources that helped me level up my skills as a software engineer.
+
+### Books
 
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them)
 - [Designing Data Intensive Application](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/)
@@ -14,3 +16,13 @@ List of books that are well worth their price and that helped me level up my ski
 - [Learn Git the Hard Way](https://leanpub.com/learngitthehardway)
 - [Learning Concurrent Programming With Go](https://www.manning.com/books/learn-concurrent-programming-with-go)
 - [Understanding Distributed Systems](https://understandingdistributed.systems/)
+
+
+
+### Posts
+
+- [Putting the "you" in CPU](https://cpu.land/)
+- [How did I get here ?](https://how-did-i-get-here.net/)
+- [Modern network load balancing and proxying](https://blog.envoyproxy.io/introduction-to-modern-network-load-balancing-and-proxying-a57f6ff80236)
+- [Everything you should know about certificates and PKI](https://smallstep.com/blog/everything-pki/)
+
