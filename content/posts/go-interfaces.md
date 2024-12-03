@@ -7,9 +7,7 @@ tags: ['Go']
 # Introduction 
 
 <!--start-summary-->
-Go treats interfaces differently from other languages that implement them. Knowledge about them is scattered across various posts and books, this post tries to group in a single place[^1] what developers need to know to be comfortable using interfaces in Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
-
-<br>
+Go treats interfaces differently from other languages that implement them. Knowledge about them is scattered across various posts and books, this post tries to group in a single place what developers need to know to be comfortable using interfaces in Go: when to use them, how are they modeled in memory and what are the most common mistakes when using them.
 
 # Basics
 
@@ -29,11 +27,11 @@ type Reader interface {
 }
 ```
 
-You may notice an idiom in Go with interfaces, they are very often named using an *-er* suffix. Another idiomatic way of manipulating interfaces is to keep them small: "*the bigger the interface, the weaker the abstraction*".
+You may have noticed an idiom in Go with interfaces, they are very often named using an *-er* suffix. Another idiomatic way of manipulating interfaces is to keep them small: "*the bigger the interface, the weaker the abstraction*".
 
-Going back to `io.Reader` and `io.Writer`, whether a program wants to read/write to a file or an HTTP request/response, it will end up using one of these. Hence, it is a good idea to follow the [Liskov's substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle). For instance, instead of accepting a file path as a function parameter to read from said file, the function should accept an `io.Reader` directly.
+Going back to `io.Reader` and `io.Writer`, whether a program wants to read from or write to a file or an HTTP request/response, it will end up using one of these. Hence, it is a good idea to follow the [Liskov's substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle). For instance, instead of accepting a file path as a function parameter to read from said file, the function should accept an `io.Reader` directly.
 
-This small change makes the function more generic so that it may be reused in the future and also allows for easier testing by simplifying the creation of mocks as demonstrated bellow.
+This small change makes the function more generic so that it may be reused in the future and allows for easier testing by simplifying the creation of mocks as demonstrated bellow.
 
 ```go
 // Uppercase reads from a stream and returns all data in uppercase.
@@ -74,7 +72,9 @@ type ReadCloser interface {
 }
 ```
 
-Sometimes a program might need to access an interface underlying value. Doing so is called a *type assertion*, the "comma ok" idiom and type switches are two methods to achieve that. Type assertion is not limited to concrete types and can also be used to check if an interface underlying value implements other interfaces.
+Sometimes a program might need to access an interface underlying value, doing so is called a *type assertion*.
+
+The "comma ok" idiom and type switches are two methods to achieve that. Type assertion is not limited to concrete types and can also be used to check if an interface underlying value implements other interfaces.
 
 ```go
 // "any" is an alias for "interface{}" which matches 
@@ -99,8 +99,6 @@ default:
 ```
 
 Another interesting feature brought by interface in Go is that they allow to restrict the behavior of the underlying type. We will discuss how this is achieved in the next section.
-
-<br>
 
 # Under the hood
 
@@ -139,8 +137,6 @@ Now that we understand how interfaces are modeled, we can understand the followi
 - Interfaces restrict the underlying types behavior because they only have pointers to the methods used to satisfy the interface, the ones stored in the interface table. Type assertion is a way to lift these restrictions by getting a copy of the underlying value which is either not restricted at all, in the case of an assertion to a concrete type, or has different restrictions in the case of an assertion to another interface.
 
 - Interfaces are equal to `nil` only if both value and type are `nil`.
-
-<br>
 
 # Common mistakes
 
@@ -207,7 +203,7 @@ A type *T has access to both pointer-receiver methods and value methods, this is
 
 The catch is that the language allows for values which are *addressable* to use pointer-receiver methods transparently, in which case the runtime simply get the address of that value. 
 
-But not all values are addressable, meaning the runtime cannot get the address of every values. Some notably *unaddressable* values are: interface values and map values. The reason behind this inability to get the values' addresses depend for every type. 
+But not all values are addressable, meaning the runtime cannot get the address of every values. Some notably *unaddressable* values are: interfaces and maps. The reason behind this inability to get the values' addresses depend for every type. 
 
 For maps, it is because the values might get rearranged during the program lifetime so their addresses might change. For interfaces, it is because passing the underlying value's address to a pointer-receiver method might lead to the value being changed which would cause inconsistency if the value no longer matches the type stored in the interface.
 
@@ -245,9 +241,9 @@ func main() {
 
 ## Not checking interface compliance
 
-Most interface checks are done at compile time, the compiler knows what value is passed to a function expecting an interface, and if the value does not satisfies the interface, the program will not compile. However, there are certain situations in which the compiler does not know the value ahead of time and the check will have to happen at run-time and, if the check fail, the program will panic.
+Most interface checks are done at compile time, the compiler knows what value is passed to a function expecting an interface, and if the value does not satisfies the interface, the program will not compile. However, there are certain situations in which the compiler does not know the value ahead of time and the check will have to happen at runtime and, if the check fail, the program will panic.
 
-To avoid these run-time checks and, when it is necessary to guarantee within a package implementing a type that this type satisfies an interface, you can do the following:
+To avoid these runtime checks and, when it is necessary to guarantee within a package implementing a type that this type satisfies an interface, you can do the following:
 
 ```go
 // Replace `io.Writer` with the interface you need to ensure compliance
@@ -263,7 +259,9 @@ Here the blank identifier is used to create an unallocated variable with an inte
 
 This one is more a design mistakes than a technical one and is very well explained in [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them). 
 
-When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Below is a simple example of defining an interface of the producer side which create a useless abstraction for any customer of that package.
+When manipulating packages and modules, we distinguish between the producer side, where the imported code lives, and the customer sides, where the imported code is used. 
+
+Defining interfaces on the producer side is considered a bad practice since you force your abstraction upon customers, abstraction that they might not need which goes against the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle). Below is a simple example of defining an interface of the producer side which create a useless abstraction for any customer of that package.
 
 ```go
 package producer
@@ -295,9 +293,7 @@ func (e ElectricCar) Stop() {}
 func (e ElectricCar) Charge() {}
 ```
 
-Rare exceptions to this rules are when the language team foresee interfaces are very generic and useful for most programs such as `io.Writer` or `io.Reader`. Let's remember that *"abstraction should be discovered, not created"*.
-
-<br>
+Rare exceptions to this rules are when the language team foresee interfaces are very generic and useful for most programs such as `io.Writer` or `io.Reader`. Remember that *"abstraction should be discovered, not created"*.
 
 # Conclusion
 
@@ -310,5 +306,3 @@ This following sources helped in the writing of this post:
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces), R. Cox
 
 - [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), F. Campoy
-
-[^1]: [Relevant XKCD](https://xkcd.com/927/)
