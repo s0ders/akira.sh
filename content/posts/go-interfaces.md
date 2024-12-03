@@ -109,7 +109,6 @@ Russ Cox's [post](https://research.swtch.com/interfaces) goes into the details o
 Interfaces are modeled as a two-word data structure:
 
 - The first word points to an interface table, or "itable", which holds the underlying concrete type and pointers to the associated functions for that interface. 
-
 - The second word points to the actual value of that interface.
 
 To illustrate this, let's take the example of a simple interface, `Stringer`. It is defined in the `fmt` package, and is used to print values passed to the various print functions defined in the package.
@@ -131,7 +130,7 @@ var foo Stringer = CustomInt(1)
 
 Behind the scenes, the `Stringer` interface in `foo` is stored as depicted below, where arrows symbolize pointers.
 
-![Interface memory model](itable.webp)
+![Interface memory model](itable_v2.webp)
 
 Now that we understand how interfaces are modeled, we can understand the followings:
 
