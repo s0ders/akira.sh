@@ -23,7 +23,7 @@ Before learning about style guidelines and optimizations techniques, one must kn
 - [Effective Go](https://go.dev/doc/effective_go), written by the Go team, this guide lays down advises to write clear, idiomatic code and highlight several gotchas. This one is, in my opinion, a must read if you are serious about learning Go.
 - [Go FAQ](https://go.dev/doc/faq), this FAQ answers dozens of interesting questions such as: why is my binary so large ? why is my nil error not equal to nil ? how can I guarantee my type satisfies an interface ?
 - [Go Landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f), three common mistakes that can trick beginners and hardened developers alike.[^1]
-- [Let's Go](https://lets-go.alexedwards.net/), Alex Edward's book is a very good reading to learn how to build clean, efficient and secure web application.
+- [Let's Go](https://lets-go.alexedwards.net/),  a very good reading to learn how to build clean, efficient and secure web application.
 - [Go Proverbs](https://go-proverbs.github.io/), list of short Go idioms inspired by Rob Pike's[^2] [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) at Gopherfest.
 
 # Guidelines 
@@ -39,6 +39,7 @@ Even-though Go is a language with several idioms, there is still room for interp
 You now understand the language's primitives, idioms, features and most common mistakes. Writing reliable code means that you must go the extra-miles and, sometimes, understand the language nuts and bolts. The books and talks below were conceived for that very purpose.
 
 - [100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them), my favorite resource in this post. Teiva Harsanyi's book is a must-read for any serious Go developer. From common data types mistakes to advanced compiler and memory optimizations, this book has it all. Knowing these 100 mistakes will, without a doubt, make you a better Go developer.
+- [Learn Concurrent Programming with Go](https://www.manning.com/books/learn-concurrent-programming-with-go), everything you need to get up and running with Go concurrency features.
 - [research!rsc](https://research.swtch.com/), Russ Cox[^3] blog on programming, it contains several articles that give an insight on how Go is designed, be it the memory model or how are interfaces and structures modeled in memory.
 - [Understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s), this half an hour talk offers lots of valuable information on one of Go most special pre-declared identifier[^4].
 
