@@ -23,7 +23,8 @@ jobs:
     needs:
       - spell
     env:
-      HUGO_VERSION: 0.139.3
+      HUGO_VERSION: 0.142.0
+      ONION_URL: http://ldxykjict6gyqq3spjnuqx7hxfdl33fttosuyluwm56ms2ptlqo5jnqd.onion/
     steps:
 
       - name: Install Hugo CLI
@@ -50,14 +51,21 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Build with Hugo
+      - name: Build akira.sh with Hugo
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: hugo --gc --minify
+        run: hugo --gc --minify --destination ./public/ build
+
+      - name: Build akira.sh Onion service with Hugo
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: hugo --gc --minify --destination ./onion/ --baseURL ${{ ONION_URL }} build
 
       - name: Deploy using rsync
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           rsync --delete -avz ./public/* github_actions@${{ secrets.SERVER_IP }}:/var/www/html/akira/
+          rsync --delete -avz ./onion/* github_actions@${{ secrets.SERVER_IP }}:/var/www/html/akira_onion/
