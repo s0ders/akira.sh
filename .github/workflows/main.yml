@@ -61,7 +61,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: hugo --gc --minify --destination ./onion/ --baseURL ${{ ONION_URL }} build
+        run: hugo --gc --minify --destination ./onion/ --baseURL ${ONION_URL} build
 
       - name: Deploy using rsync
         env:
