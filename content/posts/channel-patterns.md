@@ -199,6 +199,8 @@ func main() {
 
 This pattern is more of a "goroutine" and concurrency pattern but you will find yourself working with contexts very often when dealing with channels which is why I included it.
 
+**Detail if info can be passed downwards and not upwards (copy and not pass by pointer), example with cancelling a context passed downwards not cancelling the same context passed to another goroutine from the upward main goroutine**
+
 **Tip**: if you are unsure what type of context to pass on, use `context.TODO()` which conveys the meaning of an unknown context at current time instead of `context.Background()`.
 
 
