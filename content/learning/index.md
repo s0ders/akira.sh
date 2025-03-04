@@ -28,5 +28,4 @@ List of learning resources that helped me level up my skills as a software engin
 - [Everything you should know about certificates and PKI](https://smallstep.com/blog/everything-pki/)
 - [Why Logical Clocks are Easy](https://queue.acm.org/detail.cfm?id=2917756)
 - [latency: a primer](https://igor.io/latency/)
-- 
 
