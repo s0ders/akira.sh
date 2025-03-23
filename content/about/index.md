@@ -11,24 +11,15 @@ Software engineering and automation enthusiast.
 <br> 
 My main interests are, in no particular order: 
 
-- Software development in Go
+- Software development, preferably in Go
 - Linux system administration
-- Containers and their orchestration
+- Containers and orchestration
 - Software delivery automation and supply chain security
-
-## Why
-
-I enjoy writing about topics I'm interested about and believe there's nothing like sharing knowledge to deepen your understanding about a subject.
-<br>
-Besides, most of my learning sources are various blogs, so I wanted to try the exercise of sharing by writing succinct post and I appreciate it so far.
-
-
 
 ## PGP
 
-Want to email me some sensitive information ? Here's my public key.
+Want to email me some sensitive information? Here's my public key.
 
-Please don't send me classified documents, I am **not** a War Thunder developer.
 
 ```pgp
 -----BEGIN PGP PUBLIC KEY BLOCK-----
