@@ -36,7 +36,6 @@ jobs:
       - spell
     env:
       HUGO_VERSION: 0.142.0
-      ONION_URL: http://ldxykjict6gyqq3spjnuqx7hxfdl33fttosuyluwm56ms2ptlqo5jnqd.onion/
     steps:
 
       - name: Install Hugo CLI
@@ -48,17 +47,31 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
+          set -x  # Enable verbose debugging output
           mkdir -p /home/runner/.ssh
+          
+          # Print out SSH key details (without showing actual key)
+          echo "${{ secrets.SSH_KEY }}" | wc -c
+          echo "${{ secrets.SSH_KEY }}" | head -c 10
+          
+          # Verbose SSH key handling
           ssh-keyscan ${{ secrets.SERVER_IP }} >> /home/runner/.ssh/known_hosts
-
+          
           echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
-
+          
+          # Additional diagnostics
+          ls -l /home/runner/.ssh/
+          cat /home/runner/.ssh/known_hosts
+          
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add /home/runner/.ssh/github_actions
+          
+          # Test SSH connection
+          ssh -v -i /home/runner/.ssh/github_actions ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} exit || true
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -68,12 +81,6 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: hugo --gc --minify --destination ./public/ build
-
-      - name: Build akira.sh Onion service with Hugo
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
-        run: hugo --gc --minify --destination ./onion/ --baseURL ${ONION_URL} build
 
       - name: Deploy using rsync
         env:
