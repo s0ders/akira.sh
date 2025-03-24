@@ -9,9 +9,21 @@ defaults:
     shell: bash
 
 jobs:
+  gitleaks:
+    name: Secret leaks detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - uses: gitleaks/gitleaks-action@83373cf2f8c4db6e24b41c1a9b086bb9619e9cd3 # v2.3.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   spell:
     name: Spell Check with Typos
     runs-on: ubuntu-latest
+    needs:
+      - gitleaks
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
